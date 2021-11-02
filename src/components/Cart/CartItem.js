@@ -35,8 +35,10 @@ function CartItem({ item }) {
       <div className="cart-item-menu">
         <input
           type="number"
-          value={count}
-          onChange={e => dispatch(entryCart(item.id, e.target.value))}
+          value={item.count}
+          /* -------------------------UPDATE ---------------------------------*/
+          // added parseInt to ensure that we get an integer from this event
+          onChange={(e) => dispatch(entryCart(item.id, parseInt(e.target.value)))}
         />
         <button
           className="cart-item-button"

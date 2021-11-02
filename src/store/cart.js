@@ -36,12 +36,12 @@ export const decrementCart = (id) => {
 }
 
 const ENTRY = 'cart/ENTRY'
-
+// everythin here looked good. We need the val from the onChange event for us to update state
 export const entryCart = (id, val) => {
     return {
         type: ENTRY,
         id,
-        count: val
+        val
     }
 }
 
@@ -64,7 +64,10 @@ export default function cartReducer(state = {}, action) {
             newState[id].count = newState[id].count - 1;
             return newState;
         case ENTRY:
-            newState[id].count = val;
+/* -------------------------UPDATE ---------------------------------*/
+            //we added action in front of val otherwise it is undefined. val comes from the action object.
+            newState[id].count = action.val;
+            return newState;
         default:
             return state;
     }
